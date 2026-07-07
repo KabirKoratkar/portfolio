@@ -7,13 +7,32 @@ export default function Contact() {
       <div className="mt-8 space-y-3 font-mono text-sm">
         <p>
           <a
-            href="mailto:hello@kabirkoratka.com"
+            href="mailto:hello@kabirkoratkar.com"
             className="underline underline-offset-4 hover:no-underline"
           >
-            hello@kabirkoratka.com
+            hello@kabirkoratkar.com
           </a>
         </p>
-        <p className="text-black/40">[Placeholder — add social links]</p>
+        <p>
+          <a
+            href="https://linkedin.com/in/kabir-koratkar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:no-underline"
+          >
+            LinkedIn
+          </a>
+        </p>
+        <p>
+          <a
+            href="https://github.com/kabirkoratkar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:no-underline"
+          >
+            GitHub
+          </a>
+        </p>
       </div>
     </section>
   );

@@ -75,13 +75,13 @@ export default function About() {
             R&eacute;sum&eacute;
           </a>
           <a
-            href="mailto:hello@kabirkoratka.com"
+            href="mailto:hello@kabirkoratkar.com"
             className="transition-colors hover:text-[#15130f]/70"
           >
             Email
           </a>
           <a
-            href="https://linkedin.com/in/kabirkoratkar"
+            href="https://linkedin.com/in/kabir-koratkar"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-[#15130f]/70"

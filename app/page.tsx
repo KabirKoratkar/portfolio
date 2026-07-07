@@ -9,8 +9,9 @@ export default function Home() {
           Kabir Koratkar
         </h1>
         <p className="mt-6 max-w-md text-base leading-relaxed text-black/60 sm:text-lg">
-          [Placeholder — a short one or two line introduction goes here.
-          Replace with a real bio.]
+          Builder shipping AI-powered products — from a college application
+          platform to a medical device compliance startup. Heading to
+          Purdue&apos;s Daniels School of Business this fall.
         </p>
       </div>
     </section>

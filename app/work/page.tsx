@@ -2,23 +2,25 @@ const projects = [
   {
     id: "waypoint",
     title: "Waypoint",
+    href: "https://waypointedu.org",
     year: "2025",
     description:
-      "An AI-powered platform that helps students navigate the college application process — currently shipping with paying users.",
+      "AI-powered college application platform consolidating essay drafting, deadline tracking, AI counseling, and document storage — live beta with paying users at $55.99/season.",
   },
   {
     id: "therapeuo",
     title: "Therapeuo",
-    year: "2025",
+    href: "https://therapeuo.xyz",
+    year: "2026",
     description:
-      "A smart insole and clinical notes platform for physical therapy, co-founded to close the gap between patient data and clinical documentation.",
+      "Smart weight-bearing insole and clinical notes platform closing a compliance gap in post-surgical rehab. Piloting with The Ensign Group across Bay Area facilities serving 20,000+ patients.",
   },
   {
-    id: "project-three",
-    title: "Project Three",
-    year: "2023",
+    id: "mumbai-falcons",
+    title: "Mumbai Falcons Racing",
+    year: "2025",
     description:
-      "[Placeholder description — replace with a short summary of the project.]",
+      "Designed the Agla Star driver-development program end-to-end — a nationwide venue analysis across 12 Indian cities and a full competition framework to recruit next-gen racing talent.",
   },
 ];
 
@@ -34,7 +36,20 @@ export default function Work() {
             className="flex scroll-mt-24 flex-col gap-2 py-8 sm:flex-row sm:items-baseline sm:justify-between"
           >
             <div>
-              <h2 className="text-xl font-medium">{project.title}</h2>
+              <h2 className="text-xl font-medium">
+                {project.href ? (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-black/60"
+                  >
+                    {project.title}
+                  </a>
+                ) : (
+                  project.title
+                )}
+              </h2>
               <p className="mt-1 max-w-md text-sm text-black/60">
                 {project.description}
               </p>
