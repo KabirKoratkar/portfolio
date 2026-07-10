@@ -182,11 +182,12 @@ export const ASCII_FRAME = [
 ].join("\n");
 
 export const BG_ASCII_FIELD = (() => {
-  const field = generateAsciiField(160, 110, [
-    { x: 0.05, y: 0.05, rx: 0.46, ry: 0.46, strength: 1.1 },
-    { x: 0.85, y: 0.4, rx: 0.44, ry: 0.44, strength: 0.95 },
-    { x: 0.35, y: 0.95, rx: 0.4, ry: 0.4, strength: 0.9 },
-    { x: 0.65, y: 0.65, rx: 0.3, ry: 0.3, strength: 0.5 },
+  const field = generateAsciiField(160, 130, [
+    { x: 0.05, y: 0.05, rx: 0.48, ry: 0.48, strength: 1.3 },
+    { x: 0.85, y: 0.4, rx: 0.46, ry: 0.46, strength: 1.15 },
+    { x: 0.35, y: 0.95, rx: 0.42, ry: 0.42, strength: 1.1 },
+    { x: 0.65, y: 0.65, rx: 0.32, ry: 0.32, strength: 0.7 },
+    { x: 0.15, y: 0.75, rx: 0.2, ry: 0.2, strength: 0.55 },
   ]);
   return field + "\n" + field;
 })();

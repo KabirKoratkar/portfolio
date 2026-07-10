@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import GlitchText from "./GlitchText";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -12,11 +14,24 @@ const links = [
 
 export default function Nav() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/60 px-6 py-5 font-mono text-[12px] tracking-[0.08em] uppercase backdrop-blur-md sm:px-10">
+    <header
+      className={`sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/70 px-6 font-mono text-[12px] tracking-[0.08em] uppercase backdrop-blur-md transition-[padding] duration-300 sm:px-10 ${
+        scrolled ? "py-3" : "py-5"
+      }`}
+    >
       <Link href="/" className="font-semibold">
-        KABIR KORATKAR<span className="cursor-blink">_</span>
+        <GlitchText text="KABIR KORATKAR" className="inline-block" />
+        <span className="cursor-blink">_</span>
       </Link>
       <nav className="flex gap-6 sm:gap-8">
         {links.map((link) => {

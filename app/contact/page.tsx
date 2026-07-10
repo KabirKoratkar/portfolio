@@ -1,3 +1,5 @@
+import Reveal from "../components/Reveal";
+
 export default function Contact() {
   const links = [
     { label: "email", value: "hello@kabirkoratkar.com", href: "mailto:hello@kabirkoratkar.com" },
@@ -7,16 +9,18 @@ export default function Contact() {
 
   return (
     <section className="flex min-h-[70vh] flex-col justify-center px-6 sm:px-10">
-      <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
-        [ 04 / contact ]
-      </p>
-      <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-        Contact
-      </h1>
+      <Reveal>
+        <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
+          [ 04 / contact ]
+        </p>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+          Contact
+        </h1>
+      </Reveal>
 
       <div className="mt-10 max-w-md border border-border p-6 font-mono text-[13px] leading-[1.9]">
-        {links.map((l) => (
-          <div key={l.label}>
+        {links.map((l, i) => (
+          <Reveal key={l.label} delay={150 + i * 150}>
             <span className="text-foreground">&gt;</span>{" "}
             <span className="text-faint">{l.label}:</span>{" "}
             <a
@@ -27,12 +31,12 @@ export default function Contact() {
             >
               {l.value}
             </a>
-          </div>
+          </Reveal>
         ))}
-        <div className="mt-2 text-foreground">
+        <Reveal delay={150 + links.length * 150} className="mt-2 text-foreground">
           &gt; status: open to opportunities.
           <span className="cursor-blink">_</span>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

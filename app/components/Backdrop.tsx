@@ -1,4 +1,5 @@
 import { BG_ASCII_FIELD } from "../lib/ascii";
+import Parallax from "./Parallax";
 
 const GRAIN_SVG =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+";
@@ -6,7 +7,7 @@ const GRAIN_SVG =
 export default function Backdrop() {
   return (
     <>
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <Parallax speed={0.06} className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div
           className="absolute -left-[10%] -top-[15%] h-[70vw] w-[70vw] rounded-full blur-[60px]"
           style={{
@@ -31,7 +32,7 @@ export default function Backdrop() {
             animation: "drift1 40s ease-in-out infinite reverse",
           }}
         />
-      </div>
+      </Parallax>
 
       <div
         className="pointer-events-none fixed -inset-[10%] z-[1] opacity-[0.18] mix-blend-overlay"
@@ -42,12 +43,14 @@ export default function Backdrop() {
         }}
       />
 
-      <pre
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[1] m-0 h-full w-full select-none overflow-hidden whitespace-pre font-mono text-[8px] leading-[1.02] tracking-[0.02em] text-[oklch(88%_0.004_260)] opacity-30 mix-blend-screen"
-      >
-        {BG_ASCII_FIELD}
-      </pre>
+      <Parallax speed={0.12} className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+        <pre
+          aria-hidden="true"
+          className="m-0 h-[120%] w-full select-none whitespace-pre font-mono text-[9px] leading-[1.05] tracking-[0.02em] text-[oklch(90%_0.004_260)] opacity-[0.4] mix-blend-screen"
+        >
+          {BG_ASCII_FIELD}
+        </pre>
+      </Parallax>
 
       <div
         className="pointer-events-none fixed inset-0 z-[1]"

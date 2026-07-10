@@ -1,5 +1,7 @@
 import { generateAsciiBlock } from "../lib/ascii";
 import Marquee from "../components/Marquee";
+import Reveal from "../components/Reveal";
+import GlitchText from "../components/GlitchText";
 
 const projects = [
   {
@@ -49,49 +51,52 @@ const projects = [
 export default function Work() {
   return (
     <section className="px-6 py-24 sm:px-10">
-      <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
-        [ 01 / work ]
-      </p>
-      <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-        Work
-      </h1>
+      <Reveal>
+        <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
+          [ 01 / work ]
+        </p>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+          Work
+        </h1>
+      </Reveal>
 
       <div className="mt-12 divide-y divide-border border-t border-border">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            id={project.id}
-            className="grid scroll-mt-24 grid-cols-1 items-center gap-6 py-8 sm:grid-cols-[minmax(120px,160px)_1fr_auto] sm:gap-8"
-          >
-            <pre className="hidden font-mono text-[7px] leading-[1.05] text-faint sm:block">
-              {generateAsciiBlock(project.id, 9, 20, project.shape)}
-            </pre>
-            <div>
-              <div className="flex flex-wrap items-baseline gap-3">
-                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                  {project.href ? (
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border-b border-border pb-[1px] transition-colors hover:border-foreground hover:text-foreground"
-                    >
-                      {project.title}
-                    </a>
-                  ) : (
-                    project.title
-                  )}
-                </h2>
-                <span className="font-mono text-[13px] text-faint">
-                  {project.year}
-                </span>
+        {projects.map((project, i) => (
+          <Reveal key={project.id} delay={Math.min(i, 4) * 80}>
+            <div
+              id={project.id}
+              className="grid scroll-mt-24 grid-cols-1 items-center gap-6 py-8 transition-transform duration-300 hover:-translate-y-0.5 sm:grid-cols-[minmax(120px,160px)_1fr_auto] sm:gap-8"
+            >
+              <pre className="hidden font-mono text-[7px] leading-[1.05] text-faint sm:block">
+                {generateAsciiBlock(project.id, 9, 20, project.shape)}
+              </pre>
+              <div>
+                <div className="flex flex-wrap items-baseline gap-3">
+                  <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                    {project.href ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border-b border-border pb-[1px] transition-colors hover:border-foreground hover:text-foreground"
+                      >
+                        <GlitchText text={project.title} />
+                      </a>
+                    ) : (
+                      <GlitchText text={project.title} />
+                    )}
+                  </h2>
+                  <span className="font-mono text-[13px] text-faint">
+                    {project.year}
+                  </span>
+                </div>
+                <p className="mt-2 max-w-md text-sm leading-[1.7] text-muted">
+                  {project.description}
+                </p>
               </div>
-              <p className="mt-2 max-w-md text-sm leading-[1.7] text-muted">
-                {project.description}
-              </p>
+              <span className="hidden text-lg text-faint sm:block">↗</span>
             </div>
-            <span className="hidden text-lg text-faint sm:block">↗</span>
-          </div>
+          </Reveal>
         ))}
       </div>
 

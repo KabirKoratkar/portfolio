@@ -1,4 +1,6 @@
 import GlitchText from "./components/GlitchText";
+import Reveal from "./components/Reveal";
+import Parallax from "./components/Parallax";
 import { generateAsciiGlobe } from "./lib/ascii";
 
 export default function Home() {
@@ -7,7 +9,7 @@ export default function Home() {
   return (
     <>
       <section className="flex min-h-[80vh] flex-col justify-center px-6 sm:px-10">
-        <div className="max-w-2xl">
+        <Reveal className="max-w-2xl">
           <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
             [ 00 / overview ]
           </p>
@@ -23,16 +25,18 @@ export default function Home() {
             platform to a medical device compliance startup. Heading to
             Purdue&apos;s Daniels School of Business this fall.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="grid grid-cols-1 items-center gap-10 border-t border-border px-6 py-24 sm:px-10 lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex justify-center">
-          <pre className="m-0 whitespace-pre font-mono text-[9px] leading-[1] text-[oklch(78%_0.02_260)] [text-shadow:0_0_12px_oklch(60%_0.05_260_/_0.4)]">
-            {globe}
-          </pre>
-        </div>
-        <div className="flex flex-col gap-4">
+        <Reveal className="flex justify-center">
+          <Parallax speed={-0.04}>
+            <pre className="m-0 whitespace-pre font-mono text-[9px] leading-[1] text-[oklch(78%_0.02_260)] [text-shadow:0_0_12px_oklch(60%_0.05_260_/_0.4)]">
+              {globe}
+            </pre>
+          </Parallax>
+        </Reveal>
+        <Reveal delay={150} className="flex flex-col gap-4">
           <h2 className="font-serif text-3xl leading-[1.1] tracking-[0.01em] text-foreground sm:text-4xl">
             Systems, everywhere I look.
           </h2>
@@ -45,7 +49,7 @@ export default function Home() {
           <div className="text-[11px] tracking-[0.08em] text-faint uppercase">
             → generated · deterministic · grayscale
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

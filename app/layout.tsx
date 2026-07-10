@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import Backdrop from "./components/Backdrop";
+import ScrollProgress from "./components/ScrollProgress";
 
 const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
@@ -35,6 +36,7 @@ export default function RootLayout({
     >
       <body className="relative flex min-h-full flex-col overflow-x-hidden bg-background font-mono text-foreground">
         <Backdrop />
+        <ScrollProgress />
         <Nav />
         <main className="relative z-[2] flex-1">{children}</main>
       </body>
