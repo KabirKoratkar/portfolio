@@ -1,38 +1,38 @@
 export default function Contact() {
+  const links = [
+    { label: "email", value: "hello@kabirkoratkar.com", href: "mailto:hello@kabirkoratkar.com" },
+    { label: "linkedin", value: "linkedin.com/in/kabir-koratkar", href: "https://linkedin.com/in/kabir-koratkar" },
+    { label: "github", value: "github.com/kabirkoratkar", href: "https://github.com/kabirkoratkar" },
+  ];
+
   return (
     <section className="flex min-h-[70vh] flex-col justify-center px-6 sm:px-10">
-      <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
+      <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
+        [ 04 / contact ]
+      </p>
+      <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
         Contact
       </h1>
-      <div className="mt-8 space-y-3 font-mono text-sm">
-        <p>
-          <a
-            href="mailto:hello@kabirkoratkar.com"
-            className="underline underline-offset-4 hover:no-underline"
-          >
-            hello@kabirkoratkar.com
-          </a>
-        </p>
-        <p>
-          <a
-            href="https://linkedin.com/in/kabir-koratkar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 hover:no-underline"
-          >
-            LinkedIn
-          </a>
-        </p>
-        <p>
-          <a
-            href="https://github.com/kabirkoratkar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 hover:no-underline"
-          >
-            GitHub
-          </a>
-        </p>
+
+      <div className="mt-10 max-w-md border border-border p-6 font-mono text-[13px] leading-[1.9]">
+        {links.map((l) => (
+          <div key={l.label}>
+            <span className="text-foreground">&gt;</span>{" "}
+            <span className="text-faint">{l.label}:</span>{" "}
+            <a
+              href={l.href}
+              target={l.href.startsWith("http") ? "_blank" : undefined}
+              rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="border-b border-border pb-[1px] text-muted transition-colors hover:border-foreground hover:text-foreground"
+            >
+              {l.value}
+            </a>
+          </div>
+        ))}
+        <div className="mt-2 text-foreground">
+          &gt; status: open to opportunities.
+          <span className="cursor-blink">_</span>
+        </div>
       </div>
     </section>
   );

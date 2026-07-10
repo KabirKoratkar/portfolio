@@ -12,29 +12,23 @@ const links = [
 
 export default function Nav() {
   const pathname = usePathname();
-  const isDark =
-    pathname.startsWith("/art") || pathname.startsWith("/about");
 
   return (
-    <header
-      className={`sticky top-0 z-50 flex items-center justify-between border-b px-6 py-5 font-mono text-[11px] uppercase tracking-[0.25em] sm:px-10 ${
-        isDark
-          ? "border-white/10 bg-[#15130f] text-white"
-          : "border-black/10 bg-white text-black"
-      }`}
-    >
-      <Link href="/" className="opacity-100">
-        Kabir Koratkar
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/60 px-6 py-5 font-mono text-[12px] tracking-[0.08em] uppercase backdrop-blur-md sm:px-10">
+      <Link href="/" className="font-semibold">
+        KABIR KORATKAR<span className="cursor-blink">_</span>
       </Link>
-      <nav className="flex gap-6">
+      <nav className="flex gap-6 sm:gap-8">
         {links.map((link) => {
           const active = pathname === link.href;
           return (
             <Link
               key={link.href}
               href={link.href}
-              className={`transition-opacity hover:opacity-100 ${
-                active ? "opacity-100" : "opacity-40"
+              className={`border-b pb-[2px] transition-colors ${
+                active
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted hover:border-foreground hover:text-foreground"
               }`}
             >
               {link.label}
