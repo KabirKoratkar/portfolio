@@ -54,6 +54,13 @@ const sections: { title: string; entries: Entry[] }[] = [
     title: "Projects",
     entries: [
       {
+        name: "ForkLab",
+        role: "Hackathon",
+        date: "2026",
+        href: "https://github.com/KabirKoratkar/forklab",
+        desc: "Causal debugging for AI agent fleets, built at the Daytona HackSprint in SF",
+      },
+      {
         name: "Caveat",
         role: "Hackathon",
         date: "2026",
@@ -92,7 +99,7 @@ const links = [
   { label: "LinkedIn", href: "https://linkedin.com/in/kabir-koratkar" },
   { label: "GitHub", href: "https://github.com/kabirkoratkar" },
   { label: "Résumé", href: "/resume.pdf" },
-  { label: "Email", href: "mailto:hello@kabirkoratkar.com" },
+  { label: "Email", href: "mailto:kkoratka@purdue.edu" },
 ];
 
 export default function Home() {
@@ -100,14 +107,9 @@ export default function Home() {
     <div className="pt-12">
       <h1 className="text-4xl font-semibold tracking-tight">Kabir Koratkar</h1>
       <p className="mt-5 text-[17px] leading-[1.65]">
-        Hey, I&apos;m Kabir. 18, from the Bay Area, and heading to Purdue for
-        Business Analytics &amp; Supply Chain. I build companies — right now
-        that&apos;s{" "}
-        <a href="https://priceflag.org" className="link">Priceflag</a>,{" "}
-        <a href="https://waypointedu.org" className="link">Waypoint</a> &amp;{" "}
-        <a href="https://therapeuo.xyz" className="link">Therapeuo</a>. Off the
-        clock I&apos;m <a href="/art" className="link">drawing</a>, lifting
-        &amp; taking night drives through the East Bay hills.
+        Hey, I&apos;m Kabir. 18, from the Bay Area, majoring in Industrial
+        Engineering at Purdue. I build companies — right now that&apos;s{" "}
+        <a href="https://priceflag.org" className="link">Priceflag</a>.
       </p>
       <div className="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm">
         {links.map((l) => (
