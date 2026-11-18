@@ -74,6 +74,37 @@ p {
   padding: 0 0.08em;
 }
 
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: background-color 150ms;
+}
+
+.link:hover {
+  background: color-mix(in oklch, var(--accent) 30%, transparent);
+}
+
+/* home intro: name holds, then lifts away */
+@keyframes introOut {
+  to {
+    opacity: 0;
+    transform: translateY(-4%);
+    visibility: hidden;
+  }
+}
+
+.intro {
+  animation: introOut 0.7s cubic-bezier(0.7, 0, 0.3, 1) 1.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+
 .halftone {
   background-image: radial-gradient(var(--accent) 32%, transparent 34%);
   background-size: 7px 7px;
