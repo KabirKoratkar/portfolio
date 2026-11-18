@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  IBM_Plex_Mono,
+  Instrument_Serif,
+} from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import Backdrop from "./components/Backdrop";
@@ -19,6 +23,11 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Kabir Koratkar",
   description: "Portfolio of Kabir Koratkar — design, development, and art.",
@@ -32,9 +41,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plexMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${plexMono.variable} ${instrumentSerif.variable} ${bricolage.variable} h-full antialiased`}
     >
-      <body className="relative flex min-h-full flex-col overflow-x-hidden bg-background font-mono text-foreground">
+      <body className="relative flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
         <Backdrop />
         <ScrollProgress />
         <Nav />

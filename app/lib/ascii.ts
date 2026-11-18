@@ -59,34 +59,6 @@ export function generateAsciiBlock(
   return out.join("\n");
 }
 
-type Blob = { x: number; y: number; rx: number; ry: number; strength: number };
-
-export function generateAsciiField(cols: number, rows: number, blobs: Blob[]) {
-  const ramp = " .:-=+*#%@";
-  const rand = mulberry32(seedFromString("bg-field"));
-  const out: string[] = [];
-  for (let y = 0; y < rows; y++) {
-    let row = "";
-    for (let x = 0; x < cols; x++) {
-      const nx = x / cols;
-      const ny = y / rows;
-      const noise = rand();
-      let v = 0.1 + noise * 0.12;
-      for (const b of blobs) {
-        const dx = (nx - b.x) / b.rx;
-        const dy = (ny - b.y) / b.ry;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        v += Math.max(0, 1 - d) * b.strength;
-      }
-      v = Math.max(0, Math.min(1, v));
-      const idx = Math.floor(v * (ramp.length - 1));
-      row += ramp[idx];
-    }
-    out.push(row);
-  }
-  return out.join("\n");
-}
-
 export function generateAsciiRail(cols: number, rows: number, seed: string) {
   const rand = mulberry32(seedFromString(seed));
   const ramp = " .:-=+*";
@@ -181,13 +153,3 @@ export const ASCII_FRAME = [
   "+------------------------+",
 ].join("\n");
 
-export const BG_ASCII_FIELD = (() => {
-  const field = generateAsciiField(160, 130, [
-    { x: 0.05, y: 0.05, rx: 0.48, ry: 0.48, strength: 1.3 },
-    { x: 0.85, y: 0.4, rx: 0.46, ry: 0.46, strength: 1.15 },
-    { x: 0.35, y: 0.95, rx: 0.42, ry: 0.42, strength: 1.1 },
-    { x: 0.65, y: 0.65, rx: 0.32, ry: 0.32, strength: 0.7 },
-    { x: 0.15, y: 0.75, rx: 0.2, ry: 0.2, strength: 0.55 },
-  ]);
-  return field + "\n" + field;
-})();

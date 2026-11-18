@@ -50,37 +50,38 @@ const projects = [
 
 export default function Work() {
   return (
-    <section className="px-6 py-24 sm:px-10">
+    <section className="overflow-x-clip px-6 py-24 sm:px-10">
       <Reveal>
         <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
           [ 01 / work ]
         </p>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-          Work
+        <h1 className="riso mt-4 font-serif text-7xl leading-[0.9] sm:text-9xl">
+          Work<span className="italic">s</span>
         </h1>
       </Reveal>
 
-      <div className="mt-12 divide-y divide-border border-t border-border">
+      <div className="mt-16 border-t-2 border-foreground">
         {projects.map((project, i) => (
           <Reveal key={project.id} delay={Math.min(i, 4) * 80}>
-            <div
+            <article
               id={project.id}
-              className="grid scroll-mt-24 grid-cols-1 items-center gap-6 py-8 transition-transform duration-300 hover:-translate-y-0.5 sm:grid-cols-[minmax(120px,160px)_1fr_auto] sm:gap-8"
+              className="group grid scroll-mt-24 grid-cols-1 items-start gap-6 border-b border-border py-10 sm:grid-cols-[3rem_1fr_minmax(120px,160px)] sm:gap-10"
             >
-              <pre className="hidden font-mono text-[7px] leading-[1.05] text-faint sm:block">
-                {generateAsciiBlock(project.id, 9, 20, project.shape)}
-              </pre>
+              <span className="font-mono text-[13px] text-faint">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <div>
-                <div className="flex flex-wrap items-baseline gap-3">
-                  <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h2 className="font-serif text-4xl leading-[1] transition-transform duration-300 group-hover:translate-x-2 group-hover:italic sm:text-6xl">
                     {project.href ? (
                       <a
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border-b border-border pb-[1px] transition-colors hover:border-foreground hover:text-foreground"
+                        className="decoration-accent decoration-4 underline-offset-[0.12em] hover:underline"
                       >
                         <GlitchText text={project.title} />
+                        <span className="ml-2 text-2xl text-accent">↗</span>
                       </a>
                     ) : (
                       <GlitchText text={project.title} />
@@ -90,18 +91,23 @@ export default function Work() {
                     {project.year}
                   </span>
                 </div>
-                <p className="mt-2 max-w-md text-sm leading-[1.7] text-muted">
+                <p className="mt-4 max-w-lg text-base leading-[1.7] text-muted">
                   {project.description}
                 </p>
               </div>
-              <span className="hidden text-lg text-faint sm:block">↗</span>
-            </div>
+              <pre
+                aria-hidden="true"
+                className="riso-sm hidden rotate-2 font-mono text-[7px] leading-[1.05] text-foreground transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110 sm:block"
+              >
+                {generateAsciiBlock(project.id, 9, 20, project.shape)}
+              </pre>
+            </article>
           </Reveal>
         ))}
       </div>
 
-      <div className="mt-16">
-        <Marquee text="//// KK // WORK // BUILD // SHIP // ITERATE //// " />
+      <div className="mt-24">
+        <Marquee text="build ✶ ship ✶ iterate ✶ repeat ✶ " />
       </div>
     </section>
   );

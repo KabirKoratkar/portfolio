@@ -8,8 +8,8 @@ export default function About() {
         <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
           [ 02 / about ]
         </p>
-        <h1 className="mt-6 font-serif text-7xl tracking-[0.01em] text-foreground sm:text-9xl">
-          I&apos;m Kabir.
+        <h1 className="riso mt-6 font-serif text-7xl tracking-[-0.01em] text-foreground sm:text-9xl">
+          I&apos;m <span className="italic">Kabir.</span>
         </h1>
       </Reveal>
 
@@ -51,7 +51,7 @@ export default function About() {
           question every time.
         </p>
         <p className="mt-8 font-serif text-3xl italic leading-[1.3] text-foreground sm:text-4xl">
-          Where&apos;s the friction, and what does it take to remove it?
+          Where&apos;s the <span className="hl">friction</span>, and what does it take to remove it?
         </p>
       </Reveal>
 

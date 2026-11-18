@@ -25,25 +25,26 @@ export default function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/70 px-6 font-mono text-[12px] tracking-[0.08em] uppercase backdrop-blur-md transition-[padding] duration-300 sm:px-10 ${
+      className={`sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/75 px-6 font-mono text-[12px] tracking-[0.06em] lowercase backdrop-blur-md transition-[padding] duration-300 sm:px-10 ${
         scrolled ? "py-3" : "py-5"
       }`}
     >
-      <Link href="/" className="font-semibold">
-        <GlitchText text="KABIR KORATKAR" className="inline-block" />
-        <span className="cursor-blink">_</span>
+      <Link href="/" className="whitespace-nowrap font-serif text-xl normal-case italic tracking-normal sm:text-2xl">
+        <GlitchText text="Kabir Koratkar" className="inline-block" />
+        <span className="text-accent">✶</span>
       </Link>
-      <nav className="flex gap-6 sm:gap-8">
+      <nav className="flex text-[11px] sm:gap-2 sm:text-[12px]">
         {links.map((link) => {
           const active = pathname === link.href;
           return (
             <Link
               key={link.href}
               href={link.href}
-              className={`border-b pb-[2px] transition-colors ${
+              aria-current={active ? "page" : undefined}
+              className={`px-1.5 py-1 transition-[background-color,color,transform] duration-200 sm:px-2 active:scale-95 ${
                 active
-                  ? "border-foreground text-foreground"
-                  : "border-transparent text-muted hover:border-foreground hover:text-foreground"
+                  ? "bg-accent text-foreground"
+                  : "text-muted hover:-rotate-2 hover:bg-foreground hover:text-background"
               }`}
             >
               {link.label}

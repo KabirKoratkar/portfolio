@@ -13,12 +13,12 @@ export default function Contact() {
         <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
           [ 04 / contact ]
         </p>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-          Contact
+        <h1 className="riso mt-4 font-serif text-7xl leading-[0.9] sm:text-9xl">
+          Say <span className="italic">hi.</span>
         </h1>
       </Reveal>
 
-      <div className="mt-10 max-w-md border border-border p-6 font-mono text-[13px] leading-[1.9]">
+      <div className="mt-12 max-w-md -rotate-1 border-2 border-foreground bg-panel p-6 font-mono text-[13px] leading-[1.9] shadow-[6px_6px_0_var(--accent)]">
         {links.map((l, i) => (
           <Reveal key={l.label} delay={150 + i * 150}>
             <span className="text-foreground">&gt;</span>{" "}
