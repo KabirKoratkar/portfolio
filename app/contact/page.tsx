@@ -1,7 +1,7 @@
 const links = [
   { label: "Email", value: "kkoratka@purdue.edu", href: "mailto:kkoratka@purdue.edu" },
   { label: "Email", value: "kabirvideo@gmail.com", href: "mailto:kabirvideo@gmail.com" },
-  { label: "LinkedIn", value: "linkedin.com/in/kabir-koratkar", href: "https://linkedin.com/in/kabir-koratkar" },
+  { label: "LinkedIn", value: "linkedin.com/in/kabirkoratkar", href: "https://linkedin.com/in/kabirkoratkar" },
   { label: "GitHub", value: "github.com/kabirkoratkar", href: "https://github.com/kabirkoratkar" },
   { label: "Résumé", value: "resume.pdf", href: "/resume.pdf" },
 ];

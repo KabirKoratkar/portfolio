@@ -13,16 +13,16 @@ const sections: { title: string; entries: Entry[] }[] = [
       {
         name: "Priceflag",
         role: "Co-Founder",
-        date: "Present",
+        date: "Sep 2026 — Present",
         href: "https://priceflag.org",
-        desc: "Shopify price changes that roll out gradually & auto-revert if they stop paying",
+        desc: "Pricing intelligence for eCommerce merchants. Piloting with 5 businesses, backed by Nvidia Inception",
       },
       {
         name: "Waypoint",
         role: "Founder",
-        date: "Jan 2025 — Present",
+        date: "Jan 2026 — Jun 2026",
         href: "https://waypointedu.org",
-        desc: "AI college application platform, live beta with paying users at $55.99/season",
+        desc: "AI college application platform: essay tools, deadline tracking, an AI counselor & document vault",
       },
       {
         name: "Therapeuo",
@@ -37,16 +37,22 @@ const sections: { title: string; entries: Entry[] }[] = [
     title: "Experience",
     entries: [
       {
+        name: "Purdue Scope Consulting",
+        role: "Associate Consultant",
+        date: "Sep 2026 — Present",
+        desc: "Market research, competitive analysis & go-to-market strategy for a startup",
+      },
+      {
         name: "Mumbai Falcons Racing",
-        role: "Strategy Intern",
+        role: "Strategy & Program Developer",
         date: "Jun 2025 — Aug 2025",
         desc: "Designed the Agla Star driver program; venue analysis across 12 Indian cities",
       },
       {
         name: "SoloScale Solutions",
         role: "BD & AI Solutions",
-        date: "Jan 2023 — Dec 2023",
-        desc: "Sold and shipped custom AI chatbots for SMBs, cold contact to close",
+        date: "Jan 2024 — Jan 2025",
+        desc: "Custom AI automations & chatbots for SMBs with n8n and OpenAI",
       },
     ],
   },
@@ -56,15 +62,21 @@ const sections: { title: string; entries: Entry[] }[] = [
       {
         name: "ForkLab",
         role: "Hackathon",
-        date: "2026",
+        date: "Jul 2026",
         href: "https://github.com/KabirKoratkar/forklab",
-        desc: "Causal debugging for AI agent fleets, built at the Daytona HackSprint in SF",
+        desc: "Causal debugging for AI agent fleets. Built solo; won Best Use of Braintrust at Daytona HackSprint",
       },
       {
         name: "Caveat",
         role: "Hackathon",
-        date: "2026",
-        desc: "AI lease contract review, shipped at the Agents in Production hackathon",
+        date: "Jul 2026",
+        desc: "AI lease contract review. 2nd place, Best Use of ActianDB at Agents in Production",
+      },
+      {
+        name: "Truffle",
+        role: "Contributor",
+        date: "Apr 2026 — Jul 2026",
+        desc: "Agent layer for a natural-language portfolio optimizer (CVXPY, Clarabel, Anthropic API)",
       },
     ],
   },
@@ -79,7 +91,7 @@ const sections: { title: string; entries: Entry[] }[] = [
       {
         name: "Stock Market Game",
         role: "Top 50",
-        desc: "Top 50 of 2,500 regional competitors",
+        desc: "2x regional Top 50",
       },
       {
         name: "Dublin High Robotics",
@@ -96,7 +108,7 @@ const sections: { title: string; entries: Entry[] }[] = [
 ];
 
 const links = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/kabir-koratkar" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/kabirkoratkar" },
   { label: "GitHub", href: "https://github.com/kabirkoratkar" },
   { label: "Résumé", href: "/resume.pdf" },
   { label: "Email", href: "mailto:kkoratka@purdue.edu" },
