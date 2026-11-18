@@ -1,44 +1,18 @@
 import type { Metadata } from "next";
-import {
-  Bricolage_Grotesque,
-  Cinzel,
-  IBM_Plex_Mono,
-  Instrument_Serif,
-} from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
-import Backdrop from "./components/Backdrop";
-import ScrollProgress from "./components/ScrollProgress";
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
-
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-});
-
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-  weight: ["400", "600", "800"],
-});
+const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kabir Koratkar",
   description: "Portfolio of Kabir Koratkar — design, development, and art.",
 };
+
+// saved choice wins, else follow the system; runs before first paint (no flash)
+const themeScript = `(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)})()`;
 
 export default function RootLayout({
   children,
@@ -48,23 +22,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
-      className={`${plexMono.variable} ${instrumentSerif.variable} ${bricolage.variable} ${cinzel.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        {/* apply the saved theme before first paint (no flash) */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="relative flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
-        <Backdrop />
-        <ScrollProgress />
+      <body className="mx-auto flex min-h-full max-w-[40rem] flex-col bg-background px-6 font-sans text-foreground">
         <Nav />
-        <main className="relative z-[2] flex-1">{children}</main>
+        <main className="flex-1 pb-24">{children}</main>
       </body>
     </html>
   );

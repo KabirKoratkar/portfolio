@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 
-// Friend Legacy's brush orb: spins slowly, breathes, and flips the theme on click.
+// Brush orb: spins slowly and flips the theme on click.
 // The theme lives on <html data-theme>, set before paint by the inline script in layout.
 function toggleTheme() {
   const root = document.documentElement;
-  const next = root.dataset.theme === "light" ? "dark" : "light";
+  const next = root.dataset.theme === "dark" ? "light" : "dark";
   root.dataset.theme = next;
   try {
     localStorage.setItem("theme", next);
@@ -24,7 +24,6 @@ export default function ThemeOrb({ className = "" }: { className?: string }) {
       title="Toggle appearance"
       className={`friend-orb ${className}`}
     >
-      <span className="orb-halo" aria-hidden="true" />
       <Image src="/friend-orb.png" alt="" width={800} height={900} priority />
     </button>
   );

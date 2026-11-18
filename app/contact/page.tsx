@@ -1,43 +1,29 @@
-import Reveal from "../components/Reveal";
+const links = [
+  { label: "Email", value: "hello@kabirkoratkar.com", href: "mailto:hello@kabirkoratkar.com" },
+  { label: "LinkedIn", value: "linkedin.com/in/kabir-koratkar", href: "https://linkedin.com/in/kabir-koratkar" },
+  { label: "GitHub", value: "github.com/kabirkoratkar", href: "https://github.com/kabirkoratkar" },
+  { label: "Résumé", value: "resume.pdf", href: "/resume.pdf" },
+];
 
 export default function Contact() {
-  const links = [
-    { label: "email", value: "hello@kabirkoratkar.com", href: "mailto:hello@kabirkoratkar.com" },
-    { label: "linkedin", value: "linkedin.com/in/kabir-koratkar", href: "https://linkedin.com/in/kabir-koratkar" },
-    { label: "github", value: "github.com/kabirkoratkar", href: "https://github.com/kabirkoratkar" },
-  ];
-
   return (
-    <section className="flex min-h-[70vh] flex-col justify-center px-6 sm:px-10">
-      <Reveal>
-        <p className="font-mono text-[13px] tracking-[0.15em] text-faint uppercase">
-          [ 04 / contact ]
-        </p>
-        <h1 className="riso mt-4 font-serif text-7xl leading-[0.9] sm:text-9xl">
-          Say <span className="italic">hi.</span>
-        </h1>
-      </Reveal>
-
-      <div className="mt-12 max-w-md -rotate-1 border-2 border-foreground bg-panel p-6 font-mono text-[13px] leading-[1.9] shadow-[6px_6px_0_var(--accent)]">
-        {links.map((l, i) => (
-          <Reveal key={l.label} delay={150 + i * 150}>
-            <span className="text-foreground">&gt;</span>{" "}
-            <span className="text-faint">{l.label}:</span>{" "}
+    <section className="pt-12">
+      <h1 className="text-4xl font-semibold tracking-tight">Contact</h1>
+      <p className="mt-4 text-muted">Open to opportunities.</p>
+      <ul className="mt-8 space-y-3">
+        {links.map((l) => (
+          <li key={l.label} className="flex gap-4">
+            <span className="w-20 shrink-0 text-faint">{l.label}</span>
             <a
               href={l.href}
-              target={l.href.startsWith("http") ? "_blank" : undefined}
-              rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="border-b border-border pb-[1px] text-muted transition-colors hover:border-foreground hover:text-foreground"
+              {...(l.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+              className="link"
             >
               {l.value}
             </a>
-          </Reveal>
+          </li>
         ))}
-        <Reveal delay={150 + links.length * 150} className="mt-2 text-foreground">
-          &gt; status: open to opportunities.
-          <span className="cursor-blink">_</span>
-        </Reveal>
-      </div>
+      </ul>
     </section>
   );
 }

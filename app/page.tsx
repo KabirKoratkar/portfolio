@@ -1,13 +1,9 @@
-import Reveal from "./components/Reveal";
-import ThemeOrb from "./components/ThemeOrb";
-
 type Entry = {
   name: string;
   role?: string;
   date?: string;
   desc: string;
   href?: string;
-  mark?: boolean;
 };
 
 const sections: { title: string; entries: Entry[] }[] = [
@@ -19,7 +15,6 @@ const sections: { title: string; entries: Entry[] }[] = [
         role: "Co-Founder",
         date: "Present",
         href: "https://priceflag.org",
-        mark: true,
         desc: "Shopify price changes that roll out gradually & auto-revert if they stop paying",
       },
       {
@@ -102,89 +97,70 @@ const links = [
 
 export default function Home() {
   return (
-    <>
-      {/* intro splash: name alone, then it lifts away (pure CSS) */}
-      <div
-        aria-hidden="true"
-        className="intro pointer-events-none fixed inset-0 z-[70] grid place-items-center bg-background"
-      >
-        <span className="riso font-serif text-[clamp(5rem,22vw,18rem)] italic leading-none">
-          Kabir
-        </span>
-      </div>
-
-      <div className="relative mx-auto max-w-[40rem] px-6 pb-32 pt-20 sm:pt-28">
-        {/* Friend Legacy brush orb: click to flip light/dark */}
-        <ThemeOrb className="absolute right-6 top-3 w-16 sm:top-2 sm:w-24 xl:-right-64 xl:top-6 xl:w-48" />
-
-        <Reveal>
-          <h1 className="riso font-serif text-6xl leading-none tracking-[-0.01em] sm:text-7xl">
-            Kabir Koratkar
-          </h1>
-          <p className="mt-6 text-[17px] leading-[1.65]">
-            Hey, I&apos;m Kabir. 18, from the Bay Area, and heading to Purdue
-            for Business Analytics &amp; Supply Chain. I build companies —
-            right now that&apos;s{" "}
-            <a href="https://priceflag.org" className="link">Priceflag</a>,{" "}
-            <a href="https://waypointedu.org" className="link">Waypoint</a> &amp;{" "}
-            <a href="https://therapeuo.xyz" className="link">Therapeuo</a>. Off
-            the clock I&apos;m <a href="/art" className="link">drawing</a>,
-            lifting &amp; taking night drives through the East Bay hills.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                {...(l.href.startsWith("http") && {
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                })}
-                className="border border-foreground bg-panel px-2.5 py-1 text-[13px] font-semibold shadow-[2px_2px_0_var(--accent)] transition-[transform,box-shadow] duration-150 hover:-translate-x-px hover:-translate-y-px hover:shadow-[3px_3px_0_var(--accent)] active:translate-x-px active:translate-y-px active:shadow-none"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-        </Reveal>
-
-        {sections.map((section, si) => (
-          <Reveal key={section.title} delay={120 + si * 80} className="mt-16">
-            <h2 className="font-serif text-3xl">{section.title}</h2>
-            <ul className="mt-5 space-y-5">
-              {section.entries.map((e) => (
-                <li key={e.name}>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <p className="min-w-0">
-                      <span className={`font-semibold ${e.mark ? "hl" : ""}`}>
-                        {e.href ? (
-                          <a
-                            href={e.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="decoration-accent decoration-2 underline-offset-4 hover:underline"
-                          >
-                            {e.name}
-                          </a>
-                        ) : (
-                          e.name
-                        )}
-                      </span>
-                      {e.role && <span className="ml-2 text-muted">{e.role}</span>}
-                    </p>
-                    {e.date && (
-                      <span className="shrink-0 font-mono text-[12px] text-faint">
-                        {e.date}
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-0.5 text-sm leading-[1.55] text-muted">{e.desc}</p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+    <div className="pt-12">
+      <h1 className="text-4xl font-semibold tracking-tight">Kabir Koratkar</h1>
+      <p className="mt-5 text-[17px] leading-[1.65]">
+        Hey, I&apos;m Kabir. 18, from the Bay Area, and heading to Purdue for
+        Business Analytics &amp; Supply Chain. I build companies — right now
+        that&apos;s{" "}
+        <a href="https://priceflag.org" className="link">Priceflag</a>,{" "}
+        <a href="https://waypointedu.org" className="link">Waypoint</a> &amp;{" "}
+        <a href="https://therapeuo.xyz" className="link">Therapeuo</a>. Off the
+        clock I&apos;m <a href="/art" className="link">drawing</a>, lifting
+        &amp; taking night drives through the East Bay hills.
+      </p>
+      <div className="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+        {links.map((l) => (
+          <a
+            key={l.label}
+            href={l.href}
+            {...(l.href.startsWith("http") && {
+              target: "_blank",
+              rel: "noopener noreferrer",
+            })}
+            className="link"
+          >
+            {l.label}
+          </a>
         ))}
       </div>
-    </>
+
+      {sections.map((section) => (
+        <section key={section.title} className="mt-14">
+          <h2 className="text-xl font-semibold tracking-tight">{section.title}</h2>
+          <ul className="mt-4 space-y-4">
+            {section.entries.map((e) => (
+              <li key={e.name}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="min-w-0">
+                    <span className="font-semibold">
+                      {e.href ? (
+                        <a
+                          href={e.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline-offset-4 hover:underline"
+                        >
+                          {e.name}
+                        </a>
+                      ) : (
+                        e.name
+                      )}
+                    </span>
+                    {e.role && <span className="ml-2 text-muted">{e.role}</span>}
+                  </p>
+                  {e.date && (
+                    <span className="shrink-0 font-mono text-[12px] text-faint">
+                      {e.date}
+                    </span>
+                  )}
+                </div>
+                <p className="mt-0.5 text-sm leading-[1.55] text-muted">{e.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
   );
 }

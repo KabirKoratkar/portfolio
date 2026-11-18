@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  // work and about were folded into home; keep old links alive
+  async redirects() {
+    return ["/work", "/about"].map((source) => ({ source, destination: "/", permanent: false }));
+  },
 };
 
 export default nextConfig;

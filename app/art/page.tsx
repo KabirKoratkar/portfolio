@@ -1,25 +1,11 @@
-import Reveal from "../components/Reveal";
-import Reel from "../components/Reel";
+import ThemeOrb from "../components/ThemeOrb";
 
 export default function Art() {
   return (
-    <>
-      {/* no shots yet: the reel just holds on the spinning seal */}
-      <Reel shots={[]} />
-
-      <section className="px-6 py-20 text-center sm:px-10">
-        <Reveal>
-          <p className="font-mono text-[12px] tracking-[0.3em] text-faint uppercase">
-            ✶ ✶ ✶
-          </p>
-          <h1 className="riso mt-5 font-display text-[2.1rem] font-semibold leading-[1.1] tracking-[0.06em] sm:text-7xl sm:tracking-[0.12em]">
-            Coming Soon
-          </h1>
-          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted">
-            Not a gallery. Whatever I want it to be.
-          </p>
-        </Reveal>
-      </section>
-    </>
+    <section className="flex flex-col items-center pt-16 text-center">
+      <ThemeOrb className="w-44 sm:w-56" />
+      <h1 className="mt-10 text-2xl font-semibold tracking-tight">Coming soon</h1>
+      <p className="mt-2 text-muted">Not a gallery. Whatever I want it to be.</p>
+    </section>
   );
 }
