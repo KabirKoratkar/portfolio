@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   Bricolage_Grotesque,
+  Cinzel,
   IBM_Plex_Mono,
   Instrument_Serif,
 } from "next/font/google";
@@ -28,6 +29,12 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
 });
 
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "600", "800"],
+});
+
 export const metadata: Metadata = {
   title: "Kabir Koratkar",
   description: "Portfolio of Kabir Koratkar — design, development, and art.",
@@ -41,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plexMono.variable} ${instrumentSerif.variable} ${bricolage.variable} h-full antialiased`}
+      className={`${plexMono.variable} ${instrumentSerif.variable} ${bricolage.variable} ${cinzel.variable} h-full antialiased`}
     >
       <body className="relative flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
         <Backdrop />
