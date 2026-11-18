@@ -29,7 +29,7 @@ export default function Art() {
         {pieces.map((piece, i) => (
           <Reveal key={piece.id} delay={(i % 3) * 100}>
             <figure
-              className={`group relative flex aspect-[4/5] flex-col justify-between bg-panel p-5 shadow-[6px_6px_0_var(--foreground)] transition-transform duration-300 hover:rotate-0 hover:scale-[1.03] ${tilts[i]}`}
+              className={`group relative flex aspect-[4/5] flex-col justify-between bg-panel p-5 shadow-[6px_6px_0_oklch(0%_0_0/0.6)] transition-transform duration-300 hover:rotate-0 hover:scale-[1.03] ${tilts[i]}`}
             >
               <span
                 aria-hidden="true"

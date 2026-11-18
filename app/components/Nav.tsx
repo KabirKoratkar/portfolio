@@ -43,7 +43,7 @@ export default function Nav() {
               aria-current={active ? "page" : undefined}
               className={`px-1.5 py-1 transition-[background-color,color,transform] duration-200 sm:px-2 active:scale-95 ${
                 active
-                  ? "bg-accent text-foreground"
+                  ? "bg-accent text-background [text-shadow:none]"
                   : "text-muted hover:-rotate-2 hover:bg-foreground hover:text-background"
               }`}
             >

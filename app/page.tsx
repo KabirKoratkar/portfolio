@@ -128,14 +128,14 @@ export default function Home() {
               <path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
             </defs>
             <circle cx="100" cy="100" r="98" fill="var(--accent)" />
-            <text className="font-mono" fontSize="17" fill="var(--foreground)">
+            <text className="font-mono" fontSize="17" fill="var(--background)">
               {/* textLength = circumference, so the loop closes exactly */}
               <textPath href="#badge-circle" textLength="488" lengthAdjust="spacing">
                 {BADGE_TEXT}
               </textPath>
             </text>
           </svg>
-          <span className="absolute inset-0 grid place-items-center font-serif text-4xl italic">
+          <span className="absolute inset-0 grid place-items-center font-serif text-4xl italic text-background [text-shadow:none]">
             kk
           </span>
         </div>

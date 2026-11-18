@@ -10,15 +10,19 @@ html {
   }
 }
 
-/* risograph zine: warm paper, black ink, one fluorescent pink */
+/* late-night CRT: blue-black screen, charcoal, fuzzy mohair white */
 :root {
-  --background: oklch(95% 0.018 85);
-  --foreground: oklch(20% 0.02 45);
-  --panel: oklch(91% 0.024 82);
-  --border: oklch(20% 0.02 45 / 0.2);
-  --muted: oklch(38% 0.02 45);
-  --faint: oklch(52% 0.02 60);
-  --accent: oklch(68% 0.21 5);
+  --background: oklch(15% 0.008 275);
+  --foreground: oklch(93% 0.008 90);
+  --panel: oklch(23% 0.006 275);
+  --border: oklch(93% 0.008 90 / 0.14);
+  --muted: oklch(74% 0.006 90);
+  --faint: oklch(56% 0.006 90);
+  --accent: oklch(90% 0.008 90);
+  --rec: oklch(62% 0.22 25);
+  /* chromatic aberration fringes */
+  --ca-red: oklch(62% 0.22 25 / 0.7);
+  --ca-cyan: oklch(80% 0.13 210 / 0.6);
 }
 
 @theme inline {
@@ -29,6 +33,7 @@ html {
   --color-muted: var(--muted);
   --color-faint: var(--faint);
   --color-accent: var(--accent);
+  --color-rec: var(--rec);
   --font-sans: var(--font-bricolage);
   --font-mono: var(--font-plex-mono);
   --font-serif: var(--font-instrument-serif);
@@ -37,11 +42,13 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  /* faint phosphor bloom on everything */
+  text-shadow: 0 0 6px oklch(93% 0.008 90 / 0.12);
 }
 
 ::selection {
   background: var(--accent);
-  color: var(--foreground);
+  color: var(--background);
 }
 
 h1,
@@ -50,13 +57,48 @@ p {
   text-wrap: pretty;
 }
 
-/* misregistered second ink */
+/* big type: RGB split + fuzzy glow, with an occasional tear */
 .riso {
-  text-shadow: 0.05em 0.035em 0 var(--accent);
+  text-shadow:
+    -0.025em 0 0 var(--ca-red),
+    0.025em 0 0 var(--ca-cyan),
+    0 0 0.3em oklch(93% 0.008 90 / 0.3);
+  animation: glitch 5.5s steps(1) infinite;
 }
 
 .riso-sm {
-  text-shadow: 2px 1.5px 0 var(--accent);
+  text-shadow:
+    -1.5px 0 0 var(--ca-red),
+    1.5px 0 0 var(--ca-cyan);
+}
+
+@keyframes glitch {
+  0%,
+  88%,
+  100% {
+    transform: none;
+    clip-path: none;
+  }
+  89% {
+    transform: translate(-0.04em, 0) skewX(-8deg);
+    clip-path: inset(18% 0 52% 0);
+  }
+  90% {
+    transform: translate(0.05em, 0);
+    clip-path: inset(62% 0 8% 0);
+  }
+  91% {
+    transform: translate(-0.02em, 0);
+    clip-path: inset(35% 0 30% 0);
+  }
+  92% {
+    transform: none;
+    clip-path: none;
+  }
+  95% {
+    transform: translate(0.03em, 0) skewX(4deg);
+    clip-path: inset(70% 0 0 0);
+  }
 }
 
 /* highlighter swipe behind a word */
@@ -64,8 +106,8 @@ p {
   background: linear-gradient(
     100deg,
     transparent 2%,
-    color-mix(in oklch, var(--accent) 55%, transparent) 4%,
-    color-mix(in oklch, var(--accent) 45%, transparent) 96%,
+    color-mix(in oklch, var(--accent) 30%, transparent) 4%,
+    color-mix(in oklch, var(--accent) 22%, transparent) 96%,
     transparent 98%
   );
   background-size: 100% 0.45em;
@@ -76,38 +118,107 @@ p {
 
 .link {
   text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 2px;
+  text-decoration-color: var(--faint);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: background-color 150ms;
+  transition: background-color 150ms, color 150ms;
 }
 
 .link:hover {
-  background: color-mix(in oklch, var(--accent) 30%, transparent);
+  background: var(--accent);
+  color: var(--background);
+  text-shadow: none;
 }
 
-/* home intro: name holds, then lifts away */
-@keyframes introOut {
+/* CRT glass: scanlines + vignette + flicker, with a rolling scan bar */
+.crt {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      oklch(0% 0 0 / 0.3) 0 1px,
+      transparent 1px 3px
+    ),
+    radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, oklch(0% 0 0 / 0.7) 100%);
+  animation: flicker 0.12s steps(2) infinite;
+}
+
+.crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 18vh;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    oklch(93% 0.008 90 / 0.035),
+    transparent
+  );
+  animation: roll 7s linear infinite;
+}
+
+@keyframes flicker {
+  50% {
+    opacity: 0.93;
+  }
+}
+
+@keyframes roll {
+  from {
+    transform: translateY(-20vh);
+  }
   to {
+    transform: translateY(110vh);
+  }
+}
+
+/* home intro: CRT powers on to the name, then switches off */
+@keyframes crtOn {
+  0% {
+    transform: scale(0.5, 0.004);
+    filter: brightness(6);
+  }
+  45% {
+    transform: scale(1, 0.004);
+    filter: brightness(4);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes crtOff {
+  0% {
+    transform: none;
+  }
+  55% {
+    transform: scale(1, 0.004);
+    filter: brightness(3);
+  }
+  100% {
+    transform: scale(0, 0.004);
     opacity: 0;
-    transform: translateY(-4%);
     visibility: hidden;
   }
 }
 
 .intro {
-  animation: introOut 0.7s cubic-bezier(0.7, 0, 0.3, 1) 1.3s forwards;
+  animation: crtOff 0.55s cubic-bezier(0.7, 0, 0.3, 1) 1.6s forwards;
+}
+
+.intro > * {
+  animation: crtOn 0.6s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .intro {
     display: none;
   }
-}
-
-.halftone {
-  background-image: radial-gradient(var(--accent) 32%, transparent 34%);
-  background-size: 7px 7px;
+  .riso,
+  .crt,
+  .crt::after {
+    animation: none;
+  }
 }
 
 @keyframes grainShift {
@@ -141,30 +252,6 @@ p {
   }
   90% {
     transform: translate(-3%, 2%);
-  }
-}
-
-@keyframes drift1 {
-  0% {
-    transform: translate(-5%, -5%) scale(1);
-  }
-  50% {
-    transform: translate(5%, 3%) scale(1.15);
-  }
-  100% {
-    transform: translate(-5%, -5%) scale(1);
-  }
-}
-
-@keyframes drift2 {
-  0% {
-    transform: translate(4%, 6%) scale(1.1);
-  }
-  50% {
-    transform: translate(-6%, -4%) scale(1);
-  }
-  100% {
-    transform: translate(4%, 6%) scale(1.1);
   }
 }
 

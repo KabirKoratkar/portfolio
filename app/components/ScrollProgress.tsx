@@ -25,7 +25,8 @@ export default function ScrollProgress() {
         />
       </div>
       <div className="pointer-events-none fixed bottom-4 right-4 z-[60] hidden font-mono text-[11px] tracking-[0.1em] text-faint sm:block">
-        [ scroll {String(pct).padStart(2, "0")}% ]
+        <span className="cursor-blink text-rec">●</span> REC · [ scroll{" "}
+        {String(pct).padStart(2, "0")}% ]
       </div>
     </>
   );
