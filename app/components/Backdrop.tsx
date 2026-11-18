@@ -7,7 +7,7 @@ export default function Backdrop() {
       {/* signal noise */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed -inset-[10%] z-[1] opacity-[0.14] mix-blend-screen"
+        className="grain pointer-events-none fixed -inset-[10%] z-[1] opacity-[0.14] mix-blend-screen"
         style={{
           backgroundImage: `url('${GRAIN_SVG}')`,
           backgroundSize: "200px 200px",

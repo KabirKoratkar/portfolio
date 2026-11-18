@@ -48,8 +48,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
       className={`${plexMono.variable} ${instrumentSerif.variable} ${bricolage.variable} ${cinzel.variable} h-full antialiased`}
     >
+      <head>
+        {/* apply the saved theme before first paint (no flash) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="relative flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
         <Backdrop />
         <ScrollProgress />

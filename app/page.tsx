@@ -1,4 +1,5 @@
 import Reveal from "./components/Reveal";
+import ThemeOrb from "./components/ThemeOrb";
 
 type Entry = {
   name: string;
@@ -99,8 +100,6 @@ const links = [
   { label: "Email", href: "mailto:hello@kabirkoratkar.com" },
 ];
 
-const BADGE_TEXT = "builder · artist · systems thinker · ";
-
 export default function Home() {
   return (
     <>
@@ -115,30 +114,8 @@ export default function Home() {
       </div>
 
       <div className="relative mx-auto max-w-[40rem] px-6 pb-32 pt-20 sm:pt-28">
-        {/* spinning sticker */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-40 top-16 hidden h-32 w-32 rotate-12 lg:block"
-        >
-          <svg
-            viewBox="0 0 200 200"
-            className="h-full w-full animate-[spin_24s_linear_infinite] motion-reduce:animate-none"
-          >
-            <defs>
-              <path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
-            </defs>
-            <circle cx="100" cy="100" r="98" fill="var(--accent)" />
-            <text className="font-mono" fontSize="17" fill="var(--background)">
-              {/* textLength = circumference, so the loop closes exactly */}
-              <textPath href="#badge-circle" textLength="488" lengthAdjust="spacing">
-                {BADGE_TEXT}
-              </textPath>
-            </text>
-          </svg>
-          <span className="absolute inset-0 grid place-items-center font-serif text-4xl italic text-background [text-shadow:none]">
-            kk
-          </span>
-        </div>
+        {/* Friend Legacy brush orb: click to flip light/dark */}
+        <ThemeOrb className="absolute right-6 top-3 w-16 sm:top-2 sm:w-24 xl:-right-64 xl:top-6 xl:w-48" />
 
         <Reveal>
           <h1 className="riso font-serif text-6xl leading-none tracking-[-0.01em] sm:text-7xl">

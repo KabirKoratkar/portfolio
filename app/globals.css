@@ -23,6 +23,25 @@ html {
   /* chromatic aberration fringes */
   --ca-red: oklch(62% 0.22 25 / 0.7);
   --ca-cyan: oklch(80% 0.13 210 / 0.6);
+  --glow: oklch(93% 0.008 90);
+  --scanline: oklch(0% 0 0 / 0.3);
+  color-scheme: dark;
+}
+
+/* Friend Legacy daylight: paper canvas, ink, no phosphor bloom */
+:root[data-theme="light"] {
+  --background: #efefec;
+  --foreground: #111210;
+  --panel: #f8f8f4;
+  --border: rgb(17 18 16 / 0.14);
+  --muted: rgb(17 18 16 / 0.66);
+  --faint: rgb(17 18 16 / 0.46);
+  --accent: #111210;
+  --ca-red: oklch(62% 0.22 25 / 0.45);
+  --ca-cyan: oklch(70% 0.13 210 / 0.4);
+  --glow: transparent;
+  --scanline: oklch(0% 0 0 / 0.07);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -44,7 +63,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   /* faint phosphor bloom on everything */
-  text-shadow: 0 0 6px oklch(93% 0.008 90 / 0.12);
+  text-shadow: 0 0 6px color-mix(in oklch, var(--glow) 12%, transparent);
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
 }
 
 ::selection {
@@ -63,7 +85,7 @@ p {
   text-shadow:
     -0.025em 0 0 var(--ca-red),
     0.025em 0 0 var(--ca-cyan),
-    0 0 0.3em oklch(93% 0.008 90 / 0.3);
+    0 0 0.3em color-mix(in oklch, var(--glow) 30%, transparent);
   animation: glitch 5.5s steps(1) infinite;
 }
 
@@ -136,7 +158,7 @@ p {
   background:
     repeating-linear-gradient(
       to bottom,
-      oklch(0% 0 0 / 0.3) 0 1px,
+      var(--scanline) 0 1px,
       transparent 1px 3px
     ),
     radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, oklch(0% 0 0 / 0.7) 100%);
@@ -462,5 +484,98 @@ p {
   }
   .coin {
     transform: rotateX(4deg) rotateY(-24deg);
+  }
+}
+
+/* ---------- Friend Legacy brush orb (theme toggle) ---------- */
+
+/* no position here: the caller places it (e.g. absolute), which anchors the halo */
+.friend-orb {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.friend-orb:hover {
+  transform: scale(1.04);
+}
+
+.friend-orb:active {
+  transform: scale(0.97);
+}
+
+.friend-orb:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 4px;
+}
+
+.friend-orb img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: legacy-spin 26s linear infinite;
+  /* ink brush on paper; inverted to chalk on the dark screen */
+  filter: invert(1) contrast(0.92) drop-shadow(0 0 10px oklch(93% 0.008 90 / 0.25));
+  transition: filter 300ms ease;
+}
+
+:root[data-theme="light"] .friend-orb img {
+  filter: contrast(1.1);
+}
+
+.orb-halo {
+  position: absolute;
+  inset: 17%;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.09);
+  box-shadow: 0 1.4rem 4rem rgb(0 0 0 / 0.42);
+  filter: blur(1.4rem);
+  animation: orb-breathe 4.8s ease-in-out infinite;
+}
+
+:root[data-theme="light"] .orb-halo {
+  background: rgb(255 255 255 / 0.5);
+  box-shadow: 0 1.4rem 4rem rgb(27 29 26 / 0.14);
+}
+
+@keyframes legacy-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orb-breathe {
+  0%,
+  100% {
+    transform: scale(0.88);
+    opacity: 0.42;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.82;
+  }
+}
+
+/* daylight glass: lighter vignette, grain multiplies like ink on paper */
+:root[data-theme="light"] .crt {
+  background:
+    repeating-linear-gradient(to bottom, var(--scanline) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 120% 100% at 50% 50%, transparent 60%, rgb(17 18 16 / 0.16) 100%);
+}
+
+:root[data-theme="light"] .grain {
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .friend-orb img,
+  .orb-halo {
+    animation: none;
   }
 }
