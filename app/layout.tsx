@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
+import Grain from "./components/Grain";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -30,6 +31,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="mx-auto flex min-h-full max-w-[40rem] flex-col bg-background px-6 font-sans text-foreground">
+        <Grain />
         <Nav />
         <main className="flex-1 pb-24">{children}</main>
       </body>

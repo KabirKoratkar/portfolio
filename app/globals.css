@@ -49,3 +49,17 @@ p {
 .link:hover {
   text-decoration-color: var(--foreground);
 }
+
+/* film grain (every page): sparse bright specks on black, 3x the viewport.
+   Grain.tsx moves it to a random offset every frame. "difference" blending
+   makes the specks lighten dark areas and darken light ones, so the grain
+   shows on the orb and text too. */
+.grain {
+  position: fixed;
+  inset: -100%;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: difference;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.33 1.33 1.33 0 -2.15  1.33 1.33 1.33 0 -2.15  1.33 1.33 1.33 0 -2.15  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
