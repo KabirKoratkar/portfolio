@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* paper and ink; the orb on /art flips to the dark pair */
+/* paper and ink; dark pair follows the system or a saved choice */
 :root {
   --background: #efefec;
   --foreground: #111210;
@@ -48,58 +48,4 @@ p {
 
 .link:hover {
   text-decoration-color: var(--foreground);
-}
-
-/* brush orb: black ink on paper, inverted to white on dark */
-.friend-orb {
-  cursor: pointer;
-  border-radius: 50%;
-  transition: transform 250ms cubic-bezier(0.2, 0.75, 0.25, 1);
-}
-
-.friend-orb:hover {
-  transform: scale(1.04);
-}
-
-.friend-orb:active {
-  transform: scale(0.97);
-}
-
-.friend-orb:focus-visible {
-  outline: 2px solid var(--foreground);
-  outline-offset: 4px;
-}
-
-.friend-orb img {
-  animation: orb-spin 26s linear infinite;
-}
-
-:root[data-theme="dark"] .friend-orb img {
-  filter: invert(1);
-}
-
-@keyframes orb-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .friend-orb img {
-    animation: none;
-  }
-}
-
-/* film grain (art page): sparse bright specks on black, 3x the viewport.
-   Grain.tsx moves it to a random offset every frame. "difference" blending
-   makes the specks lighten dark areas and darken light ones, so the grain
-   shows on the orb and text too. */
-.grain {
-  position: fixed;
-  inset: -100%;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0.3;
-  mix-blend-mode: difference;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.33 1.33 1.33 0 -2.15  1.33 1.33 1.33 0 -2.15  1.33 1.33 1.33 0 -2.15  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
